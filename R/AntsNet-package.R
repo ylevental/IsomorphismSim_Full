@@ -1,0 +1,65 @@
+#' AntsNet: Unified Simulation of Ant Colony / Machine Learning Isomorphisms
+#'
+#' Implements the full suite of simulation, visualization, and analysis tools
+#' for exploring the mathematical isomorphisms between ant colony intelligence
+#' and three major paradigms of machine learning: random forests (Part I),
+#' boosting (Part II), and neural networks (Part III).
+#'
+#' @section Part I --- Random Forest Isomorphism:
+#' \describe{
+#'   \item{\code{\link{generate_regression_data}}}{Synthetic regression data}
+#'   \item{\code{\link{simulate_ant_colony}}}{Agent-based colony simulation}
+#'   \item{\code{\link{within_colony_correlation}}}{Pairwise ant correlation}
+#'   \item{\code{\link{variance_decomposition_experiment}}}{RF variance decomposition}
+#'   \item{\code{\link{colony_variance_experiment}}}{Colony variance decomposition}
+#'   \item{\code{\link{isomorphism_test}}}{Direct isomorphism comparison}
+#'   \item{\code{\link{optimal_decorrelation_experiment}}}{Optimal theta sweep}
+#'   \item{\code{\link{sensitivity_analysis}}}{Robustness across conditions}
+#'   \item{\code{\link{create_isomorphism_schematic}}}{Figure 1: schematic}
+#'   \item{\code{\link{plot_variance_decomposition}}}{Figure 2: variance}
+#'   \item{\code{\link{plot_correlation_decay}}}{Figure 3: correlation decay}
+#'   \item{\code{\link{plot_optimal_decorrelation}}}{Figure 4: optimal theta}
+#'   \item{\code{\link{plot_sensitivity_heatmap}}}{Figure 5: sensitivity}
+#' }
+#'
+#' @section Part II --- Boosting Isomorphism:
+#' \describe{
+#'   \item{\code{\link{generate_classification_data}}}{Synthetic classification data}
+#'   \item{\code{\link{adaboost}}}{AdaBoost with decision stumps}
+#'   \item{\code{\link{predict_adaboost}}}{Predict from AdaBoost ensemble}
+#'   \item{\code{\link{acar}}}{Ant Colony Adaptive Recruitment}
+#'   \item{\code{\link{calculate_margins}}}{Boosting margin computation}
+#'   \item{\code{\link{calculate_quorum_margin}}}{Colony quorum margin}
+#'   \item{\code{\link{weak_learnability_experiment}}}{Weak learnability test}
+#'   \item{\code{\link{convergence_experiment_boost}}}{Convergence comparison}
+#'   \item{\code{\link{noise_experiment_boost}}}{Noise robustness comparison}
+#'   \item{\code{\link{plot_weak_learnability}}}{Figure 1: weak learnability}
+#'   \item{\code{\link{plot_weight_pheromone}}}{Figure 2: weight/pheromone}
+#'   \item{\code{\link{plot_margin_quorum}}}{Figure 3: margin/quorum}
+#'   \item{\code{\link{plot_convergence_boost}}}{Figure 4: convergence}
+#'   \item{\code{\link{plot_noise_robustness_boost}}}{Figure 5: noise}
+#' }
+#'
+#' @section Part III --- Neural Network Isomorphism:
+#' \describe{
+#'   \item{\code{\link{generate_synthetic_data}}}{Synthetic data with complexity}
+#'   \item{\code{\link{gacl}}}{Generational Ant Colony Learning}
+#'   \item{\code{\link{simple_neural_network}}}{Single-layer neural network}
+#'   \item{\code{\link{plot_isomorphism}}}{Figure 1: gradient isomorphism}
+#'   \item{\code{\link{plot_learning_curves}}}{Figure 2: learning curves}
+#'   \item{\code{\link{plot_pheromone_weight}}}{Figure 3: pheromone/weight}
+#'   \item{\code{\link{plot_learning_rate_sensitivity}}}{Figure 4: LR sensitivity}
+#'   \item{\code{\link{plot_noise_robustness_nn}}}{Figure 5: noise robustness}
+#'   \item{\code{\link{plot_convergence_complexity}}}{Figure 6: complexity}
+#'   \item{\code{\link{plot_gradient_dynamics}}}{Figure 7: gradient dynamics}
+#'   \item{\code{\link{plot_plasticity}}}{Figure 8: plasticity/adaptation}
+#' }
+#'
+#' @section Shiny Apps:
+#' \describe{
+#'   \item{\code{\link{launch_app}}}{Interactive explorer (Part I or Part II)}
+#' }
+#'
+#' @docType package
+#' @name AntsNet-package
+"_PACKAGE"
