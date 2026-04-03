@@ -1,9 +1,4 @@
-# AntsNet <img src="man/figures/logo.png" align="right" height="139" />
-
-<!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/AntsNet)](https://CRAN.R-project.org/package=AntsNet)
-[![R-CMD-check](https://github.com/ylevental/AntsNet/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ylevental/AntsNet/actions/workflows/R-CMD-check.yaml)
-<!-- badges: end -->
+# AntsNet
 
 **AntsNet** is a comprehensive R package for exploring the mathematical isomorphisms between ant colony decision-making and machine learning. It unifies three previously separate packages into a single toolkit accompanying the research trilogy:
 
