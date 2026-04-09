@@ -2,7 +2,7 @@
 #'   geom_vline geom_point geom_hline geom_smooth stat_summary scale_x_log10
 #'   scale_color_manual scale_fill_manual labs theme_minimal theme element_text
 #'   element_blank annotate ggsave facet_wrap
-#' @importFrom patchwork plot_annotation
+#' @importFrom patchwork
 #' @importFrom dplyr group_by summarise mutate filter n %>%
 #' @importFrom tidyr pivot_longer
 NULL
