@@ -15,7 +15,7 @@
 install.packages("AntsNet")
 
 # Development version from GitHub
-remotes::install_github("ylevental/AntsNet")
+remotes::install_github("ylevental/IsomorphismSim_Full")
 ```
 
 ## Quick Start
