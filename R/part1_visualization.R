@@ -1,6 +1,6 @@
 #' @import ggplot2
 #' @importFrom dplyr group_by summarise first
-#' @importFrom viridis scale_fill_viridis scale_color_viridis_d
+#' @importFrom viridis scale_fill_viridis
 NULL
 
 # Internal theme

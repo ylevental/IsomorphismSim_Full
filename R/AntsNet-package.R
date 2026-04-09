@@ -62,4 +62,17 @@
 #'
 #' @docType package
 #' @name AntsNet-package
+#' @importFrom stats median predict quantile rmultinom rnorm sd
+#' @importFrom utils write.csv
 "_PACKAGE"
+
+# Suppress R CMD check NOTEs for ggplot2 aes() and dplyr column references
+utils::globalVariables(c(
+ "M", "accuracy", "accuracy_mean", "cor_mean", "cor_sd", "correlation",
+ "ensemble_var", "ensemble_var_mean", "instance", "is_best", "iteration",
+ "m_try", "m_try_ratio", "median", "median_w", "n_ants", "noise",
+ "p_explore", "performance", "pheromone", "rho", "rho_mean", "rho_sd",
+ "se", "signal", "site", "theoretical", "theoretical_var",
+ "theoretical_var_mean", "theta", "wave", "waves", "weight",
+ "ensemble_var_mean"
+))

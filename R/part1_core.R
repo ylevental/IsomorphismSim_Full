@@ -143,7 +143,7 @@ simulate_ant_colony <- function(
 #'   2 ants have visited at least 2 sites.
 #' @export
 #' @examples
-#' sim <- simulate_ant_colony(n_ants = 30, n_sites = 20, p_explore = 0.3)
+#' sim <- simulate_ant_colony(n_ants = 30, p_explore = 0.3)
 #' within_colony_correlation(sim$ant_preferences)
 within_colony_correlation <- function(ant_preferences) {
   visited <- rowSums(ant_preferences != 0) >= 2

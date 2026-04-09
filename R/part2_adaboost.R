@@ -102,7 +102,8 @@ predict_adaboost <- function(result, X, up_to = NULL) {
   for (m in seq_len(up_to)) {
     pred_matrix[, m] <- predict_stump(result$models[[m]], X)
   }
-  sign(rowSums(result$alpha[1:up_to] * pred_matrix))
+  raw <- rowSums(result$alpha[1:up_to] * pred_matrix)
+  ifelse(raw >= 0, 1, -1)
 }
 
 

@@ -54,7 +54,8 @@ weak_learnability_experiment <- function(
 #'   For AdaBoost: test-set accuracy using first m iterations.
 #'   For ACAR: P(correct final decision) using m waves, averaged across
 #'   independent replicates.
-#' @param n_replicates Number of Monte Carlo replicates.
+#' @param n_boost_reps Number of Monte Carlo replicates for AdaBoost.
+#' @param n_acar_reps Number of Monte Carlo replicates for ACAR.
 #' @param max_iters Maximum iterations / waves.
 #' @return A data.frame with columns \code{iteration}, \code{accuracy},
 #'   \code{system}, and \code{rep}.
