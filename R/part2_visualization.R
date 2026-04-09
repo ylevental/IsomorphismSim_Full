@@ -53,11 +53,11 @@ plot_weak_learnability <- function(results) {
                    color = factor(gamma), fill = factor(gamma))) +
     geom_ribbon(aes(ymin = accuracy - se, ymax = accuracy + se),
                 alpha = 0.15, color = NA) +
-    geom_line(size = 1.2) +
+    geom_line(linewidth = 1.2) +
     geom_point(size = 2) +
     geom_line(data = theory,
               aes(x = waves, y = theoretical, color = factor(gamma)),
-              linetype = "dashed", alpha = 0.5, size = 0.8,
+              linetype = "dashed", alpha = 0.5, linewidth = 0.8,
               inherit.aes = FALSE) +
     scale_x_log10() +
     scale_color_manual(
@@ -111,10 +111,10 @@ plot_weight_pheromone <- function(boost_result, acar_result, site_qualities) {
   p1 <- ggplot() +
     geom_line(data = weight_df,
               aes(x = iteration, y = weight, group = instance),
-              alpha = 0.12, color = .BLUE, size = 0.4) +
+              alpha = 0.12, color = .BLUE, linewidth = 0.4) +
     geom_line(data = med_df,
               aes(x = iteration, y = median_w),
-              color = "darkblue", size = 1.5) +
+              color = "darkblue", linewidth = 1.5) +
     labs(title = "(a) AdaBoost: Instance Weight Evolution",
          x = "Iteration", y = expression(D[t](i))) +
     .theme_pub()
@@ -133,7 +133,7 @@ plot_weight_pheromone <- function(boost_result, acar_result, site_qualities) {
   names(site_cols) <- unique(pheromone_df$site)
 
   p2 <- ggplot(pheromone_df, aes(x = wave, y = pheromone, color = site)) +
-    geom_line(size = 1.2) +
+    geom_line(linewidth = 1.2) +
     scale_color_manual(values = site_cols) +
     labs(title = expression("(b) ACAR: Pheromone " * tau[j](t) * " Evolution"),
          x = "Recruitment Wave",
@@ -166,8 +166,8 @@ plot_margin_quorum <- function(boost_result, X, y, acar_result) {
 
   p1 <- ggplot(data.frame(margin = margins), aes(x = margin)) +
     geom_histogram(bins = 30, fill = .BLUE, alpha = 0.7, color = "white") +
-    geom_vline(xintercept = 0, linetype = "dashed", color = .RED, size = 1.2) +
-    geom_vline(xintercept = mean(margins), color = "darkblue", size = 1.2) +
+    geom_vline(xintercept = 0, linetype = "dashed", color = .RED, linewidth = 1.2) +
+    geom_vline(xintercept = mean(margins), color = "darkblue", linewidth = 1.2) +
     annotate("text", x = mean(margins) + 0.05, y = Inf, vjust = 2,
              label = sprintf("mean = %.3f", mean(margins)), size = 3.8) +
     labs(title = "(a) Boosting: Margin Distribution",
@@ -212,7 +212,7 @@ plot_margin_quorum <- function(boost_result, X, y, acar_result) {
 plot_convergence_boost <- function(results) {
   ggplot(results, aes(x = iteration, y = accuracy, color = system,
                       fill = system)) +
-    stat_summary(fun = mean, geom = "line", size = 1.5) +
+    stat_summary(fun = mean, geom = "line", linewidth = 1.5) +
     stat_summary(fun.data = function(y) {
       data.frame(ymin = mean(y) - sd(y) / sqrt(length(y)),
                  ymax = mean(y) + sd(y) / sqrt(length(y)))
@@ -240,7 +240,7 @@ plot_convergence_boost <- function(results) {
 plot_noise_robustness_boost <- function(results) {
   ggplot(results, aes(x = noise, y = accuracy, color = system,
                       fill = system)) +
-    stat_summary(fun = mean, geom = "line", size = 1.5) +
+    stat_summary(fun = mean, geom = "line", linewidth = 1.5) +
     stat_summary(fun = mean, geom = "point", size = 3) +
     stat_summary(fun.data = function(y) {
       data.frame(ymin = mean(y) - sd(y) / sqrt(length(y)),
