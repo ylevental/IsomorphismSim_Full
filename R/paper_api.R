@@ -421,7 +421,7 @@ sim_gradient_colony <- function(n_generations = 50,
     loss <- nn$train_loss
     if (length(loss) < n_generations)
       loss <- c(loss, rep(loss[length(loss)], n_generations - length(loss)))
-    nn_mat[, r] <- n01(loss)
+    nn_mat[, r] <- 1 - n01(loss)  # invert: low loss = high performance
 
     if (r %% 10 == 0) message("  Replicate ", r, " / ", n_rep)
   }
