@@ -77,8 +77,8 @@ boosting (Part II), and neural networks (Part III).
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ylevental/AntsNet}
-  \item Report bugs at \url{https://github.com/ylevental/AntsNet/issues}
+  \item \url{https://github.com/ylevental/IsomorphismSim_Full}
+  \item Report bugs at \url{https://github.com/ylevental/IsomorphismSim_Full/issues}
 }
 
 }
