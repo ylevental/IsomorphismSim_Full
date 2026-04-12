@@ -22,6 +22,6 @@ A data.frame with \code{M, theta, system, performance, se}
 }
 \description{
 Sweeps ensemble size and \eqn{\theta} to find the performance-optimal
-decorrelation parameter. Uses MSE for random forests and 1−accuracy
+decorrelation parameter. Uses MSE for random forests and 1-accuracy
 for ant colonies so both metrics point downward.
 }

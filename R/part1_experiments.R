@@ -173,7 +173,7 @@ isomorphism_test <- function(
 #' Experiment 4: Optimal Decorrelation
 #'
 #' Sweeps ensemble size and \eqn{\theta} to find the performance-optimal
-#' decorrelation parameter. Uses MSE for random forests and 1−accuracy
+#' decorrelation parameter. Uses MSE for random forests and 1-accuracy
 #' for ant colonies so both metrics point downward.
 #'
 #' @param ensemble_sizes Integer vector of ensemble sizes

@@ -17,8 +17,8 @@ Description: Implements the full suite of simulation, visualization, and
     <doi:10.48550/arXiv.2603.20328>, <doi:10.48550/arXiv.2604.00038>).
 License: MIT + file LICENSE
 Encoding: UTF-8
-URL: https://github.com/ylevental/AntsNet
-BugReports: https://github.com/ylevental/AntsNet/issues
+URL: https://github.com/ylevental/IsomorphismSim_Full
+BugReports: https://github.com/ylevental/IsomorphismSim_Full/issues
 Depends:
     R (>= 4.1.0)
 Imports:

@@ -10,6 +10,10 @@
 #' @importFrom grDevices colorRampPalette
 NULL
 
+# Suppress R CMD check NOTEs for ggplot2 non-standard evaluation
+utils::globalVariables(c("N", "empirical", "gen", "probability",
+                         "step", "value", "ymin", "ymax"))
+
 
 # ============================================================================
 # 1. sim_variance_decomp
