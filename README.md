@@ -6,7 +6,7 @@
 |------|-------|-------------|
 | I  | [2603.20328](https://arxiv.org/abs/2603.20328) | Random Forests ≅ Ant Colonies (variance reduction via decorrelation) |
 | II | [2604.00038](https://arxiv.org/abs/2604.00038) | Boosting ≅ Adaptive Recruitment (bias reduction via sequential reweighting) |
-| III | *forthcoming* | Neural Networks ≅ Generational Colony Learning (gradient descent via pheromone evolution) |
+| III |[2604.09677](https://arxiv.org/abs/2604.09677) | Neural Networks ≅ Generational Colony Learning (gradient descent via pheromone evolution) |
 
 ## Installation
 
