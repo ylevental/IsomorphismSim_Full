@@ -6,13 +6,17 @@
 #' @param gamma_values Numeric vector of weakness parameters.
 #' @param wave_counts Integer vector of wave counts to test.
 #' @param n_replicates Number of Monte Carlo replicates per combination.
+#' @param verbose Logical; if \code{TRUE} (the default), progress messages
+#'   are emitted via \code{\link{message}} and can be suppressed with
+#'   \code{\link{suppressMessages}}.
 #' @return A data.frame with columns \code{gamma}, \code{waves}, \code{rep},
 #'   and \code{accuracy}.
 #' @export
 weak_learnability_experiment <- function(
     gamma_values = c(0.05, 0.1, 0.2, 0.3),
     wave_counts  = c(3, 5, 8, 12, 18, 25, 40, 60, 90, 130, 200, 300),
-    n_replicates = 200) {
+    n_replicates = 200,
+    verbose = TRUE) {
 
   results <- expand.grid(
     gamma = gamma_values,
@@ -21,9 +25,9 @@ weak_learnability_experiment <- function(
   )
   results$accuracy <- NA_real_
 
-  cat("  Figure 1: ", nrow(results), " total simulations\n")
+  if (verbose) message("  Figure 1: ", nrow(results), " total simulations")
   for (i in seq_len(nrow(results))) {
-    if (i %% 1000 == 0) cat(sprintf("\r  Progress: %d / %d", i, nrow(results)))
+    if (verbose && i %% 1000 == 0) message(sprintf("  Progress: %d / %d", i, nrow(results)))
     gv <- results$gamma[i]
     wc <- results$waves[i]
     # Quality gap = 5 * gamma (ranges from 0.25 to 1.5)
@@ -44,7 +48,6 @@ weak_learnability_experiment <- function(
                 early_stop = FALSE)
     results$accuracy[i] <- as.numeric(sim$final_decision == 1)
   }
-  cat("\n")
   results
 }
 
@@ -57,11 +60,14 @@ weak_learnability_experiment <- function(
 #' @param n_boost_reps Number of Monte Carlo replicates for AdaBoost.
 #' @param n_acar_reps Number of Monte Carlo replicates for ACAR.
 #' @param max_iters Maximum iterations / waves.
+#' @param verbose Logical; if \code{TRUE} (the default), progress messages
+#'   are emitted via \code{\link{message}} and can be suppressed with
+#'   \code{\link{suppressMessages}}.
 #' @return A data.frame with columns \code{iteration}, \code{accuracy},
 #'   \code{system}, and \code{rep}.
 #' @export
 convergence_experiment_boost <- function(n_boost_reps = 30, n_acar_reps = 200,
-                                   max_iters = 80) {
+                                   max_iters = 80, verbose = TRUE) {
   results <- data.frame()
 
   # Measure at these wave/iteration counts
@@ -73,10 +79,9 @@ convergence_experiment_boost <- function(n_boost_reps = 30, n_acar_reps = 200,
   measure_at <- measure_at[measure_at <= max_iters]
 
   # --- AdaBoost: continuous accuracy, fewer reps needed ---
-  cat("  AdaBoost convergence (", n_boost_reps, "reps)...\n")
+  if (verbose) message("  AdaBoost convergence (", n_boost_reps, " reps)...")
   for (rep in seq_len(n_boost_reps)) {
-    cat(sprintf("\r  AdaBoost replicate %d / %d", rep, n_boost_reps))
-    set.seed(rep * 137)
+    if (verbose) message(sprintf("  AdaBoost replicate %d / %d", rep, n_boost_reps))
     data_tr <- generate_classification_data(n = 200, p = 5, noise = 0.1)
     data_te <- generate_classification_data(n = 500, p = 5, noise = 0.0)
 
@@ -92,11 +97,10 @@ convergence_experiment_boost <- function(n_boost_reps = 30, n_acar_reps = 200,
   }
 
   # --- ACAR: binary outcomes, many reps needed for smooth curve ---
-  cat("\n  ACAR convergence (", n_acar_reps, "reps)...\n")
+  if (verbose) message("  ACAR convergence (", n_acar_reps, " reps)...")
   sq <- c(10, 9.5)  # gap = 0.5
   for (rep in seq_len(n_acar_reps)) {
-    if (rep %% 20 == 0) cat(sprintf("\r  ACAR replicate %d / %d", rep, n_acar_reps))
-    set.seed(rep * 251)
+    if (verbose && rep %% 20 == 0) message(sprintf("  ACAR replicate %d / %d", rep, n_acar_reps))
     for (m in measure_at) {
       sim <- acar(sq, n_ants = 5, n_waves = m, noise_sd = 5.0,
                   rho = 0.02, gamma = 0.5, alpha = 1, beta = 0.5,
@@ -109,7 +113,6 @@ convergence_experiment_boost <- function(n_boost_reps = 30, n_acar_reps = 200,
                    rep       = rep))
     }
   }
-  cat("\n")
   results
 }
 
@@ -120,17 +123,19 @@ convergence_experiment_boost <- function(n_boost_reps = 30, n_acar_reps = 200,
 #'   Parameters are calibrated so both show visible, parallel degradation.
 #' @param noise_levels Numeric vector of noise fractions (0 to 0.45).
 #' @param n_replicates Number of Monte Carlo replicates per level.
+#' @param verbose Logical; if \code{TRUE} (the default), progress messages
+#'   are emitted via \code{\link{message}} and can be suppressed with
+#'   \code{\link{suppressMessages}}.
 #' @return A data.frame with columns \code{noise}, \code{accuracy}, and
 #'   \code{system}.
 #' @export
 noise_experiment_boost <- function(noise_levels = seq(0, 0.45, by = 0.05),
-                             n_replicates = 50) {
+                             n_replicates = 50, verbose = TRUE) {
   results <- data.frame()
 
   for (noise in noise_levels) {
-    cat(sprintf("\r  Noise level %.2f", noise))
+    if (verbose) message(sprintf("  Noise level %.2f", noise))
     for (rep in seq_len(n_replicates)) {
-      set.seed(rep * 257 + which(noise_levels == noise) * 31)
 
       # --- AdaBoost ---
       data_tr <- generate_classification_data(n = 200, p = 5, noise = noise)
@@ -158,6 +163,5 @@ noise_experiment_boost <- function(noise_levels = seq(0, 0.45, by = 0.05),
       )
     }
   }
-  cat("\n")
   results
 }

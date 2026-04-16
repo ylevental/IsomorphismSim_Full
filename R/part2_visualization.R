@@ -265,25 +265,27 @@ plot_noise_robustness_boost <- function(results) {
 #' @title Generate All Manuscript Figures
 #' @description Runs all experiments and saves Figures 1--5 as PDFs in the
 #'   specified output directory.
-#' @param output_dir Path to directory for saved figures.
-#' @param seed Random seed for reproducibility.
+#' @param output_dir Path to directory for saved figures.  No default is
+#'   provided to avoid writing to the user's home filespace; use
+#'   \code{tempdir()} or another user-chosen directory.
+#' @param verbose Logical; if \code{TRUE} (the default), progress messages
+#'   are emitted via \code{\link{message}} and can be suppressed with
+#'   \code{\link{suppressMessages}}.
 #' @return Invisible NULL. Figures are saved as side effects.
 #' @export
-generate_all_figures <- function(output_dir = "figures_boosting", seed = 19671210) {
+generate_all_figures <- function(output_dir, verbose = TRUE) {
   dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
-  set.seed(seed)
 
   # ---- Figure 1 ----
-  cat("=== Figure 1: Weak Learnability ===\n")
-  wl_results <- weak_learnability_experiment()
+  if (verbose) message("=== Figure 1: Weak Learnability ===")
+  wl_results <- weak_learnability_experiment(verbose = verbose)
   p1 <- plot_weak_learnability(wl_results)
   ggsave(file.path(output_dir, "figure1_weak_learnability.pdf"),
          p1, width = 8, height = 5)
-  cat("  Saved.\n")
+  if (verbose) message("  Saved.")
 
   # ---- Shared data for Figures 2 & 3 ----
-  cat("=== Preparing shared boosting + ACAR runs ===\n")
-  set.seed(42)
+  if (verbose) message("=== Preparing shared boosting + ACAR runs ===")
   dat <- generate_classification_data(n = 200, p = 5, noise = 0.1)
   boost_res <- adaboost(dat$X, dat$y, M = 50)
 
@@ -295,38 +297,38 @@ generate_all_figures <- function(output_dir = "figures_boosting", seed = 1967121
                     early_stop = FALSE)
 
   # ---- Figure 2 ----
-  cat("=== Figure 2: Weight vs Pheromone ===\n")
+  if (verbose) message("=== Figure 2: Weight vs Pheromone ===")
   p2 <- plot_weight_pheromone(boost_res, acar_res, sq)
   ggsave(file.path(output_dir, "figure2_weight_pheromone.pdf"),
          p2, width = 14, height = 5.5)
-  cat("  Saved.\n")
+  if (verbose) message("  Saved.")
 
   # ---- Figure 3 ----
-  cat("=== Figure 3: Margin vs Quorum ===\n")
+  if (verbose) message("=== Figure 3: Margin vs Quorum ===")
   p3 <- plot_margin_quorum(boost_res, dat$X, dat$y, acar_res)
   ggsave(file.path(output_dir, "figure3_margin_quorum.pdf"),
          p3, width = 14, height = 5.5)
-  cat("  Saved.\n")
+  if (verbose) message("  Saved.")
 
   # ---- Figure 4 ----
-  cat("=== Figure 4: Convergence Rates ===\n")
+  if (verbose) message("=== Figure 4: Convergence Rates ===")
   conv_results <- convergence_experiment_boost(n_boost_reps = 30, n_acar_reps = 200,
-                                         max_iters = 80)
+                                         max_iters = 80, verbose = verbose)
   p4 <- plot_convergence_boost(conv_results)
   ggsave(file.path(output_dir, "figure4_convergence.pdf"),
          p4, width = 8, height = 5)
-  cat("  Saved.\n")
+  if (verbose) message("  Saved.")
 
   # ---- Figure 5 ----
-  cat("=== Figure 5: Noise Robustness ===\n")
-  noise_results <- noise_experiment_boost()
+  if (verbose) message("=== Figure 5: Noise Robustness ===")
+  noise_results <- noise_experiment_boost(verbose = verbose)
   p5 <- plot_noise_robustness_boost(noise_results)
   ggsave(file.path(output_dir, "figure5_noise_robustness.pdf"),
          p5, width = 8, height = 5)
-  cat("  Saved.\n")
+  if (verbose) message("  Saved.")
 
   # ---- Performance summary table data ----
-  cat("=== Table 1 data: Performance summary ===\n")
+  if (verbose) message("=== Table 1 data: Performance summary ===")
   perf_summ <- noise_results %>%
     filter(noise %in% c(0, 0.1, 0.2, 0.3, 0.4)) %>%
     group_by(noise, system) %>%
@@ -335,8 +337,8 @@ generate_all_figures <- function(output_dir = "figures_boosting", seed = 1967121
   write.csv(perf_summ,
             file.path(output_dir, "table1_performance.csv"),
             row.names = FALSE)
-  cat("  Saved table1_performance.csv\n")
+  if (verbose) message("  Saved table1_performance.csv")
 
-  cat("\n=== All figures generated in:", output_dir, "===\n")
+  if (verbose) message("=== All figures generated in: ", output_dir, " ===")
   invisible(NULL)
 }

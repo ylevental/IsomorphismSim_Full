@@ -7,7 +7,8 @@
 convergence_experiment_boost(
   n_boost_reps = 30,
   n_acar_reps = 200,
-  max_iters = 80
+  max_iters = 80,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -16,6 +17,10 @@ convergence_experiment_boost(
 \item{n_acar_reps}{Number of Monte Carlo replicates for ACAR.}
 
 \item{max_iters}{Maximum iterations / waves.}
+
+\item{verbose}{Logical; if \code{TRUE} (the default), progress messages
+are emitted via \code{\link{message}} and can be suppressed with
+\code{\link{suppressMessages}}.}
 }
 \value{
 A data.frame with columns \code{iteration}, \code{accuracy},

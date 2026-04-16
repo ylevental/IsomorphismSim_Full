@@ -6,13 +6,18 @@
 \usage{
 noise_experiment_boost(
   noise_levels = seq(0, 0.45, by = 0.05),
-  n_replicates = 50
+  n_replicates = 50,
+  verbose = TRUE
 )
 }
 \arguments{
 \item{noise_levels}{Numeric vector of noise fractions (0 to 0.45).}
 
 \item{n_replicates}{Number of Monte Carlo replicates per level.}
+
+\item{verbose}{Logical; if \code{TRUE} (the default), progress messages
+are emitted via \code{\link{message}} and can be suppressed with
+\code{\link{suppressMessages}}.}
 }
 \value{
 A data.frame with columns \code{noise}, \code{accuracy}, and

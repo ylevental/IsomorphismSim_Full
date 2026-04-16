@@ -4,12 +4,16 @@
 \alias{generate_all_figures}
 \title{Generate All Manuscript Figures}
 \usage{
-generate_all_figures(output_dir = "figures_boosting", seed = 19671210)
+generate_all_figures(output_dir, verbose = TRUE)
 }
 \arguments{
-\item{output_dir}{Path to directory for saved figures.}
+\item{output_dir}{Path to directory for saved figures.  No default is
+provided to avoid writing to the user's home filespace; use
+\code{tempdir()} or another user-chosen directory.}
 
-\item{seed}{Random seed for reproducibility.}
+\item{verbose}{Logical; if \code{TRUE} (the default), progress messages
+are emitted via \code{\link{message}} and can be suppressed with
+\code{\link{suppressMessages}}.}
 }
 \value{
 Invisible NULL. Figures are saved as side effects.

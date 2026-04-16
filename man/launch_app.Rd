@@ -14,6 +14,9 @@ weak learnability).}
 
 \item{...}{Additional arguments passed to \code{\link[shiny]{runApp}}.}
 }
+\value{
+No return value, called for side effects (launches a Shiny app).
+}
 \description{
 Opens an interactive Shiny application for exploring the ant colony /
 machine learning isomorphisms.

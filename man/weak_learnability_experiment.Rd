@@ -7,7 +7,8 @@
 weak_learnability_experiment(
   gamma_values = c(0.05, 0.1, 0.2, 0.3),
   wave_counts = c(3, 5, 8, 12, 18, 25, 40, 60, 90, 130, 200, 300),
-  n_replicates = 200
+  n_replicates = 200,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -16,6 +17,10 @@ weak_learnability_experiment(
 \item{wave_counts}{Integer vector of wave counts to test.}
 
 \item{n_replicates}{Number of Monte Carlo replicates per combination.}
+
+\item{verbose}{Logical; if \code{TRUE} (the default), progress messages
+are emitted via \code{\link{message}} and can be suppressed with
+\code{\link{suppressMessages}}.}
 }
 \value{
 A data.frame with columns \code{gamma}, \code{waves}, \code{rep},

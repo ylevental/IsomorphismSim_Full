@@ -8,6 +8,7 @@
 #'   \code{"part2"} for the boosting isomorphism (adaptive recruitment,
 #'   weak learnability).
 #' @param ... Additional arguments passed to \code{\link[shiny]{runApp}}.
+#' @return No return value, called for side effects (launches a Shiny app).
 #' @export
 #' @examples
 #' if (interactive()) launch_app("part1")
